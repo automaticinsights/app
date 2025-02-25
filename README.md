@@ -1,1 +1,1 @@
-# app
+This repository investigates the causal influences of self-efficacy on academic performance using a blend of causal inference and machine learning techniques. Large language models (LLMs) provide text analysis, while LinearDML and FCI uncover the relationships between self-efficacy and grades across groups.
