@@ -1,5 +1,3 @@
-# Análise Longitudinal de Intervenção em Ansiedade com Técnicas de Séries Temporais
-
 Este notebook adapta o framework MoE (Mixture of Experts) para incorporar técnicas de análise de séries temporais, examinando os efeitos longitudinais de intervenções em níveis de ansiedade. O projeto rastreia mudanças ao longo do tempo e identifica potenciais impactos tardios ou de longo prazo de intervenções terapêuticas.
 
 ## Fluxo de Trabalho
