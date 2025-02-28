@@ -1,77 +1,82 @@
-Este notebook adapta o framework MoE (Mixture of Experts) para incorporar técnicas de análise de séries temporais, examinando os efeitos longitudinais de intervenções em níveis de ansiedade. O projeto rastreia mudanças ao longo do tempo e identifica potenciais impactos tardios ou de longo prazo de intervenções terapêuticas.
+Este notebook implementa uma análise estatística e visual para dados de ansiedade pré e pós-intervenção. Ele foi desenvolvido para processamento em Google Colab, utilizando uma abordagem que combina visualizações em estilo neon com análises estatísticas robustas para avaliar mudanças nos níveis de ansiedade entre diferentes grupos de participantes.
 
-## Fluxo de Trabalho
-1. **Carregamento e Validação de Dados**: Carrega dados sintéticos de séries temporais de intervenção em ansiedade, valida sua estrutura, conteúdo e tipos de dados, tratando possíveis erros de forma elegante.
+## Funcionalidades Principais
 
-2. **Análise de Séries Temporais**: Implementa um placeholder para análise de séries temporais, com etapas claras para expansão futura, incluindo algoritmos específicos e métodos de validação.
+O notebook oferece as seguintes funcionalidades:
 
-3. **Visualização de Dados**: Gera gráficos de linha de séries temporais, coordenadas paralelas e hipergrafos, com explicações detalhadas e tratamento de erros para problemas de visualização.
+- Processamento e validação de dados de ansiedade
+- Geração de resumos estatísticos
+- Visualizações especializadas com tema escuro e cores neon:
+  - Gráficos de densidade (KDE) para níveis de ansiedade
+  - Gráficos de violino para comparação entre grupos
+  - Gráficos de dispersão para análise de correlação
+  - Árvores de decisão para previsão de ansiedade pós-intervenção
 
-4. **Resumo Estatístico**: Realiza análise bootstrap e gera estatísticas resumidas, incluindo validação de resultados e tratamento de possíveis erros estatísticos.
+## Estrutura do Código
 
-5. **Relatório de Insights com LLM**: Sintetiza resultados usando Grok, Claude e Grok-Enhanced, enfatizando insights de séries temporais, validando outputs de LLM e tratando possíveis erros de API.
+O código está organizado em seções funcionais:
 
-## Componentes Principais
+1. **Importações e Configurações**: Importa bibliotecas essenciais (pandas, matplotlib, seaborn, scikit-learn) e define constantes para análise.
+2. **Funções de Visualização**: Implementa funções especializadas para geração de gráficos com estética neon sobre fundo preto.
+3. **Script Principal**: Orquestra o carregamento de dados, processamento e geração de resultados.
 
-### Classes
-- **DDQNAgent**: Implementação simplificada de um agente Double Deep Q-Network para demonstração, que serviria como base para aplicações de aprendizado por reforço em contextos reais.
+## Constantes e Parâmetros
 
-### Funções Principais
-- `create_output_directory()`: Cria diretório de saída, tratando possíveis erros.
-- `load_data_from_synthetic_string()`: Carrega dados de uma string CSV, lidando com erros de leitura.
-- `validate_dataframe()`: Valida o DataFrame quanto a colunas ausentes, dados não numéricos, IDs duplicados, rótulos de grupo válidos e faixas plausíveis de ansiedade.
-- `analyze_text_with_llm()`: Placeholder para análise com LLM.
-- `scale_data()`: Escala colunas especificadas usando MinMaxScaler.
-- `perform_time_series_analysis()`: Função placeholder para simular análise de séries temporais.
-- `calculate_shap_values()`: Calcula e visualiza valores SHAP para interpretabilidade do modelo.
+- `OUTPUT_PATH`: Diretório para armazenamento dos resultados
+- `PARTICIPANT_ID_COLUMN`: Coluna para identificação dos participantes
+- `GROUP_COLUMN`: Coluna que identifica os grupos de intervenção
+- `ANXIETY_PRE_COLUMN` e `ANXIETY_POST_COLUMN`: Colunas com medidas de ansiedade
+- `BOOTSTRAP_RESAMPLES`: Número de reamostragens para intervalos de confiança
+- `N_CLUSTERS`: Número de clusters para análises de agrupamento
+- `RANDOM_STATE`: Semente para reprodutibilidade
 
-### Visualizações
-- `create_kde_plot()`: Cria gráfico de estimativa de densidade kernel.
-- `create_violin_plot()`: Cria gráfico de violino para visualização de distribuições.
-- `create_parallel_coordinates_plot()`: Cria gráfico de coordenadas paralelas para análise multivariada.
-- `visualize_hypergraph()`: Cria um hipergrafo para visualizar relacionamentos entre participantes.
-- `create_time_series_line_plot()`: Cria gráfico de linha de série temporal.
+## Métodos de Análise Implementados
 
-### Análise Estatística
-- `perform_bootstrap()`: Realiza reamostragem bootstrap, calcula intervalos de confiança e verifica normalidade.
-- `save_summary()`: Salva estatísticas descritivas e IC bootstrap.
-- `generate_insights_report()`: Gera relatório abrangente de insights combinando análises LLM.
+1. **Análise Descritiva**: Resumos estatísticos dos dados de ansiedade
+2. **Visualização de Distribuições**: Gráficos KDE para visualizar distribuições pré e pós-intervenção
+3. **Comparação Entre Grupos**: Visualizações específicas para comparar resultados entre grupos
+4. **Modelagem Preditiva**: Árvore de decisão para identificar fatores que influenciam mudanças na ansiedade
 
-## Tecnologias Utilizadas
-- **Análise de Dados**: pandas, numpy, scipy
-- **Visualização**: matplotlib, seaborn, plotly, networkx
-- **Machine Learning**: scikit-learn, shap
-- **RL (Reinforcement Learning)**: Implementação simplificada de DDQN
-- **LLMs**: Integrações com Grok, Claude 3.7 Sonnet e Grok-Enhanced
+## Visualizações Produzidas
 
-## Particularidades Técnicas
-- Tratamento abrangente de erros em todas as funções
-- Compatibilidade com ambiente Google Colab
-- Escalonamento de dados para normalização
-- Testes de normalidade para distribuições bootstrap
-- Estilo visual otimizado com esquema de cores neon em fundo escuro
-- One-hot encoding para variáveis categóricas
+O notebook gera e salva as seguintes visualizações:
 
-## Dataset
-O notebook utiliza um conjunto de dados sintéticos que inclui:
+- `kde_plot.png`: Distribuição geral dos níveis de ansiedade pré e pós
+- `grouped_kde_plot.png`: Distribuições separadas por grupo de intervenção
+- `violin_plot.png`: Comparação da distribuição de ansiedade entre grupos
+- `scatter_plot.png`: Correlação entre medidas de ansiedade pré e pós por grupo
+- `decision_tree.png`: Modelo de árvore de decisão para previsão de ansiedade pós-intervenção
+
+## Requisitos
+
+- Python 3.x
+- pandas
+- matplotlib
+- seaborn
+- scikit-learn
+- statsmodels
+- numpy
+- scipy
+- Google Colab (para execução original)
+
+## Como Utilizar
+
+1. Monte o Google Drive utilizando `drive.mount('/content/drive')`
+2. Configure o diretório de saída em `OUTPUT_PATH`
+3. Execute o notebook para processar os dados e gerar visualizações
+4. Consulte os resultados no diretório especificado em `OUTPUT_PATH`
+
+## Dados de Exemplo
+
+O notebook inclui dados sintéticos para demonstração, contendo:
 - IDs de participantes
 - Grupos de intervenção (Grupo A, Grupo B, Controle)
-- Medidas de ansiedade em múltiplos pontos temporais:
-  - Pré-intervenção
-  - Pós-intervenção
-  - Semana 1
-  - Semana 2
-  - Semana 3
+- Medidas de ansiedade pré e pós-intervenção
 
-## Resultados
-A análise revela padrões distintos entre os grupos:
-- **Grupo A**: Mostra redução sustentada nos níveis de ansiedade
-- **Grupo B**: Apresenta redução inicial seguida de leve aumento
-- **Grupo Controle**: Mantém níveis de ansiedade relativamente estáveis
+## Personalização
 
-## Segurança
-- Implementa placeholders para chaves de API
-- Inclui avisos de segurança para implementações em produção
+Para utilizar seus próprios dados, substitua a string `synthetic_data` ou modifique o código para carregar dados externos. Certifique-se de que seu conjunto de dados contenha as colunas necessárias conforme definido nas constantes.
 
 ## Autor
+
 Hélio Craveiro Pessoa Júnior
